@@ -19,7 +19,8 @@ def create_model(num_classes):
     # backbone.out_channels = 512
 
     # https://download.pytorch.org/models/mobilenet_v2-b0353104.pth
-    backbone = MobileNetV2(weights_path="./backbone/mobilenet_v2.pth").features
+    # backbone = MobileNetV2(weights_path="./backbone/mobilenet_v2.pth").features
+    backbone = torchvision.models.mobilenet_v2(pretrained=True).features
     backbone.out_channels = 1280  # 设置对应backbone输出特征矩阵的channels
 
     anchor_generator = AnchorsGenerator(sizes=((32, 64, 128, 256, 512),),
@@ -38,7 +39,7 @@ def create_model(num_classes):
 
 
 def main():
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
     print("Using {} device training.".format(device.type))
 
     # 用来保存coco_info的文件
@@ -54,7 +55,8 @@ def main():
         "val": transforms.Compose([transforms.ToTensor()])
     }
 
-    VOC_root = "./"  # VOCdevkit
+    VOC_root = "/home/liuliang/"  # VOCdevkit
+
     # check voc root
     if os.path.exists(os.path.join(VOC_root, "VOCdevkit")) is False:
         raise FileNotFoundError("VOCdevkit dose not in path:'{}'.".format(VOC_root))
@@ -70,7 +72,7 @@ def main():
                                                     batch_size=batch_size,
                                                     shuffle=True,
                                                     num_workers=nw,
-                                                    collate_fn=train_data_set.collate_fn)
+                                                     collate_fn=train_data_set.collate_fn)
 
     # load validation data set
     # VOCdevkit -> VOC2012 -> ImageSets -> Main -> val.txt
