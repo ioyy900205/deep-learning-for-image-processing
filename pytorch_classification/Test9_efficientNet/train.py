@@ -71,6 +71,7 @@ def main(args):
                                              num_workers=nw,
                                              collate_fn=val_data_set.collate_fn)
 
+ torch.utils.data.
     # 如果存在预训练权重则载入
     model = create_model(num_classes=args.num_classes).to(device)
     if os.path.exists(args.weights):
