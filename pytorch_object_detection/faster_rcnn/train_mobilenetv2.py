@@ -22,6 +22,8 @@ def create_model(num_classes):
     # backbone = MobileNetV2(weights_path="./backbone/mobilenet_v2.pth").features
     backbone = torchvision.models.mobilenet_v2(pretrained=True).features
     backbone.out_channels = 1280  # 设置对应backbone输出特征矩阵的channels
+    print(backbone)
+    input()
 
     anchor_generator = AnchorsGenerator(sizes=((32, 64, 128, 256, 512),),
                                         aspect_ratios=((0.5, 1.0, 2.0),))
@@ -40,6 +42,7 @@ def create_model(num_classes):
 
 def main():
     device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+    
     print("Using {} device training.".format(device.type))
 
     # 用来保存coco_info的文件

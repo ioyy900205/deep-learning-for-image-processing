@@ -181,7 +181,7 @@ class AnchorsGenerator(nn.Module):
         dtype, device = feature_maps[0].dtype, feature_maps[0].device
 
         # one step in feature map equate n pixel stride in origin image
-        # 计算特征层上的一步等于原始图像上的步长
+        # 计算特征层上的一步等于原始图像上的步长   每个cell对应原图上的尺寸
         strides = [[torch.tensor(image_size[0] // g[0], dtype=torch.int64, device=device),
                     torch.tensor(image_size[1] // g[1], dtype=torch.int64, device=device)] for g in grid_sizes]
 

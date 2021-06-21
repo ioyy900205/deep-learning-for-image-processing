@@ -79,7 +79,7 @@ def evaluate(model, data_loader, device):
     for image, targets in metric_logger.log_every(data_loader, 100, header):
         image = list(img.to(device) for img in image)
 
-        # 当使用CPU时，跳过GPU相关指令
+#        当使用CPU时，跳过GPU相关指令
         if device != torch.device("cpu"):
             torch.cuda.synchronize(device)
 

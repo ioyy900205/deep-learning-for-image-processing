@@ -1,3 +1,9 @@
+'''
+Date: 2021-04-22 14:57:16
+LastEditors: Liuliang
+LastEditTime: 2021-05-11 14:10:07
+Description: 
+'''
 import collections
 import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
@@ -87,9 +93,12 @@ def draw_box(image, boxes, classes, scores, category_index, thresh=0.5, line_thi
     draw = ImageDraw.Draw(image)
     im_width, im_height = image.size
     for box, color in box_to_color_map.items():
+        print(box)
         xmin, ymin, xmax, ymax = box
         (left, right, top, bottom) = (xmin * 1, xmax * 1,
                                       ymin * 1, ymax * 1)
+        #打印boxex
         draw.line([(left, top), (left, bottom), (right, bottom),
                    (right, top), (left, top)], width=line_thickness, fill=color)
+        #显示框中的文字
         draw_text(draw, box_to_display_str_map, box, left, right, top, bottom, color)

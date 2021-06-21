@@ -1,3 +1,8 @@
+'''
+Date: 2021-04-22 14:58:23
+LastEditors: OBKoro1
+LastEditTime: 2021-05-11 09:38:53
+'''
 import torch.nn as nn
 import torch
 
@@ -36,7 +41,7 @@ class AlexNet(nn.Module):
         outputs = []
         for name, module in self.features.named_children():
             x = module(x)
-            if name in ["0", "3", "6"]:
+            if name in ["0", "3", "6", "8"]:
                 outputs.append(x)
 
         return outputs

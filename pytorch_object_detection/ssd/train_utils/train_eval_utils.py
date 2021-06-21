@@ -16,10 +16,10 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch,
     header = 'Epoch: [{}]'.format(epoch)
 
     lr_scheduler = None
+    
     if epoch == 0 and warmup is True:  # 当训练第一轮（epoch=0）时，启用warmup训练方式，可理解为热身训练
         warmup_factor = 5.0 / 10000
         warmup_iters = min(1000, len(data_loader) - 1)
-
         lr_scheduler = utils.warmup_lr_scheduler(optimizer, warmup_iters, warmup_factor)
 
     mloss = torch.zeros(1).to(device)  # mean losses
