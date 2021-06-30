@@ -6,8 +6,8 @@
 """
 import os
 
-train_annotation_dir = "/data/my_yolo_dataset/train/labels"
-val_annotation_dir = "/data/my_yolo_dataset/val/labels"
+train_annotation_dir =  "/media/data/data02/yolo_voc2012/my_yolo_dataset/train/labels"
+val_annotation_dir   =  "/media/data/data02/yolo_voc2012/my_yolo_dataset/val/labels"
 classes_label = "./data/my_data_label.names"
 cfg_path = "./cfg/yolov3-spp.cfg"
 
@@ -63,8 +63,8 @@ def change_and_create_cfg_file(classes_info, save_cfg_path="./cfg/my_yolov3.cfg"
 
 def main():
     # 统计训练集和验证集的数据并生成相应txt文件
-    train_txt_path = "data/my_train_data.txt"
-    val_txt_path = "data/my_val_data.txt"
+    train_txt_path = "./data/my_train_data.txt"
+    val_txt_path = "./data/my_val_data.txt"
     calculate_data_txt(train_txt_path, train_annotation_dir)
     calculate_data_txt(val_txt_path, val_annotation_dir)
 
