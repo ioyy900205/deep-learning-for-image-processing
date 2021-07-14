@@ -47,7 +47,7 @@ def train(hyp):
         print("Using multi_scale training, image range[{}, {}]".format(imgsz_min, imgsz_max))
 
     # configure run
-    # init_seeds()  # 初始化随机种子，保证结果可复现
+    init_seeds()  # 初始化随机种子，保证结果可复现
     data_dict = parse_data_cfg(data)
     train_path = data_dict["train"]
     test_path = data_dict["valid"]

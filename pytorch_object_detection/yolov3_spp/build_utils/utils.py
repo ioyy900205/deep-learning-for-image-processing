@@ -273,6 +273,14 @@ def compute_loss(p, targets, model):  # predictions, targets, model
 def build_targets(p, targets, model):
     # Build targets for compute_loss(), input targets(image,class,x,y,w,h)
     nt = targets.shape[0]
+    # ================================================================== #
+    #                说明：
+    #    初始化每个batch box的信息：
+    #    tcls表示类别;
+    #    tbox表示标记的box和生成的box的左边（x,y,w,h)
+    #    indices:图像索引，选取的anchor的索引（每层特征图中每个网格初始化3个），每层特征图上选取的网格点坐标（i，j）
+    #                                         
+    # ================================================================== #	
     tcls, tbox, indices, anch = [], [], [], []
     gain = torch.ones(6, device=targets.device)  # normalized to gridspace gain
 
