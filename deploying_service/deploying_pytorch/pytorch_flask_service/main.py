@@ -71,7 +71,7 @@ def predict():
 
 @app.route("/", methods=["GET", "POST"])
 def root():
-    return render_template("up.html")
+    return render_template("./templates/up.html")
 
 
 if __name__ == '__main__':
